@@ -6,16 +6,6 @@
   Vizir Software Studio 
 </h3>
 
-<p align="center">
-  <img alt = "Última confirmação do Github" src = "https://img.shields.io/github/last-commit/joaogasparr/telzir-phone-cost">
-  <img alt = "Idioma principal do GitHub" src = "https://img.shields.io/github/languages/top/joaogasparr/telzir-phone-cost">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/joaogasparr/telzir-phone-cost?color=%2304D361">
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361">
-
-  <a href="https://github.com/joaogasparr/telzir-phone-cost/stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/joaogasparr/telzir-phone-cost?style=social">
-  </a>
-</p>
 
 ---
 
