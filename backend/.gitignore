@@ -1,7 +1,6 @@
 node_modules
 .env
 
-tmp/*
-!tmp/.gitkeep
-
+__tests__/coverage
+database.sqlite
 dist
