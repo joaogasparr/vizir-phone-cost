@@ -3,7 +3,7 @@ import Rate from '../models/Rate';
 
 class TransparencyController {
   async store(req, res) {
-    const { origin, destiny, duration, plan_id } = req.body;
+    const { origin, destiny, duration, plan } = req.body;
 
     const rates = await Rate.findOne({
       where: { origin, destiny },
@@ -15,7 +15,7 @@ class TransparencyController {
       });
     }
 
-    const plans = await Plan.findByPk(plan_id);
+    const plans = await Plan.findByPk(plan);
 
     if (!plans) {
       return res.status(400).json({ error: 'Plan does not exists' });
