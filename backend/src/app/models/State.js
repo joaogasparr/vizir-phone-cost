@@ -1,11 +1,11 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Plan extends Model {
+class State extends Model {
   static init(sequelize) {
     super.init(
       {
+        ddd: Sequelize.INTEGER,
         title: Sequelize.STRING,
-        duration: Sequelize.INTEGER,
       },
       {
         sequelize,
@@ -16,4 +16,4 @@ class Plan extends Model {
   }
 }
 
-export default Plan;
+export default State;

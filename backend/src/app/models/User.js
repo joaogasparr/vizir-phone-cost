@@ -9,7 +9,9 @@ class User extends Model {
         email: Sequelize.STRING,
         password: Sequelize.STRING,
       },
-      { sequelize }
+      {
+        sequelize,
+      }
     );
 
     this.addHook('beforeSave', async user => {

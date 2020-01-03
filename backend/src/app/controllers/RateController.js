@@ -1,13 +1,27 @@
 import Rate from '../models/Rate';
+import State from '../models/State';
 
 class RateController {
   async index(req, res) {
     const { page = 1 } = req.query;
 
     const { count, rows: rates } = await Rate.findAndCountAll({
-      order: ['origin', 'destiny'],
+      attributes: ['id', 'price'],
+      order: ['origin_id', 'destiny_id'],
       limit: 5,
       offset: (page - 1) * 5,
+      include: [
+        {
+          model: State,
+          as: 'origin',
+          attributes: ['id', 'ddd', 'title'],
+        },
+        {
+          model: State,
+          as: 'destiny',
+          attributes: ['id', 'ddd', 'title'],
+        },
+      ],
     });
 
     return res.json({ count: Math.ceil(count / 5), rates });
@@ -15,16 +29,28 @@ class RateController {
 
   async show(req, res) {
     const rates = await Rate.findByPk(req.params.id, {
-      attributes: ['id', 'origin', 'destiny', 'price'],
+      attributes: ['id', 'price'],
+      include: [
+        {
+          model: State,
+          as: 'origin',
+          attributes: ['id', 'ddd', 'title'],
+        },
+        {
+          model: State,
+          as: 'destiny',
+          attributes: ['id', 'ddd', 'title'],
+        },
+      ],
     });
 
     return res.json(rates);
   }
 
   async store(req, res) {
-    const { origin, destiny } = req.body;
+    const { origin_id, destiny_id } = req.body;
 
-    const rateExists = await Rate.findOne({ where: { origin, destiny } });
+    const rateExists = await Rate.findOne({ where: { origin_id, destiny_id } });
 
     if (rateExists) {
       return res.status(400).json({ error: 'Rate already exists.' });
@@ -32,16 +58,18 @@ class RateController {
 
     const { id, price } = await Rate.create(req.body);
 
-    return res.json({ id, origin, destiny, price });
+    return res.json({ id, origin_id, destiny_id, price });
   }
 
   async update(req, res) {
-    const { origin, destiny } = req.body;
+    const { origin_id, destiny_id } = req.body;
 
     const rates = await Rate.findByPk(req.params.id);
 
-    if (rates.origin !== origin || rates.destiny !== destiny) {
-      const rateExists = await Rate.findOne({ where: { origin, destiny } });
+    if (rates.origin !== origin_id || rates.destiny !== destiny_id) {
+      const rateExists = await Rate.findOne({
+        where: { origin_id, destiny_id },
+      });
 
       if (rateExists) {
         return res.status(400).json({ error: 'Rate already exists.' });
@@ -52,8 +80,8 @@ class RateController {
 
     return res.json({
       id,
-      origin,
-      destiny,
+      origin_id,
+      destiny_id,
       price,
     });
   }

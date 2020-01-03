@@ -4,14 +4,19 @@ class Rate extends Model {
   static init(sequelize) {
     super.init(
       {
-        origin: Sequelize.INTEGER,
-        destiny: Sequelize.INTEGER,
         price: Sequelize.DOUBLE,
       },
-      { sequelize }
+      {
+        sequelize,
+      }
     );
 
     return this;
+  }
+
+  static associate(models) {
+    this.belongsTo(models.State, { foreignKey: 'origin_id', as: 'origin' });
+    this.belongsTo(models.State, { foreignKey: 'destiny_id', as: 'destiny' });
   }
 }
 
