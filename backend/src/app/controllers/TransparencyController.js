@@ -1,12 +1,26 @@
 import Plan from '../models/Plan';
 import Rate from '../models/Rate';
+import State from '../models/State';
 
 class TransparencyController {
   async store(req, res) {
-    const { origin, destiny, duration, plan } = req.body;
+    const { origin_id, destiny_id, duration, plan } = req.body;
 
     const rates = await Rate.findOne({
-      where: { origin, destiny },
+      where: { origin_id, destiny_id },
+      attributes: ['id', 'price'],
+      include: [
+        {
+          model: State,
+          as: 'origin',
+          attributes: ['id', 'ddd'],
+        },
+        {
+          model: State,
+          as: 'destiny',
+          attributes: ['id', 'ddd'],
+        },
+      ],
     });
 
     if (!rates) {
@@ -32,8 +46,8 @@ class TransparencyController {
     const priceWithOutFaleMais = rates.price * duration;
 
     return res.json({
-      origin,
-      destiny,
+      origin: rates.origin.ddd,
+      destiny: rates.destiny.ddd,
       duration,
       plan: plans.title,
       priceWithFaleMais,

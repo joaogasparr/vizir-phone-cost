@@ -6,6 +6,7 @@ import SessionController from './app/controllers/SessionController';
 import PlanController from './app/controllers/PlanController';
 import RateController from './app/controllers/RateController';
 import TransparencyController from './app/controllers/TransparencyController';
+import StateController from './app/controllers/StateController';
 
 // Middlewares
 import validateUserStore from './app/validators/User/Store';
@@ -46,5 +47,7 @@ routes.post(
   validateTransparencyStore,
   TransparencyController.store
 );
+// States
+routes.get('/states', StateController.index);
 
 export default routes;
