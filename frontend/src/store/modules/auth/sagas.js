@@ -38,6 +38,7 @@ export function* signUp({ payload }) {
       password,
     });
 
+    toast.success('Usuário cadastrado com sucesso!');
     history.push('/');
   } catch (err) {
     toast.error(err.response.data.error);

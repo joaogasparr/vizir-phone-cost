@@ -3,23 +3,23 @@ import { Link } from 'react-router-dom';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Form } from '@rocketseat/unform';
+import { Form, Input } from '@rocketseat/unform';
 
 import logo from '~/assets/logo.png';
 
-import { signInRequest } from '~/store/modules/auth/actions';
+import { signUpRequest } from '~/store/modules/auth/actions';
 
 import SubmitButton from '~/components/Button';
 import TextInput from '~/components/TextInput';
 
-import schema from '~/validators/SignIn';
+import schema from '~/validators/SignUp';
 
 export default function SignIn() {
   const dispatch = useDispatch();
   const loading = useSelector(state => state.auth.loading);
 
-  function handleSubmit({ email, password }) {
-    dispatch(signInRequest(email, password));
+  function handleSubmit({ name, email, password }) {
+    dispatch(signUpRequest(name, email, password));
   }
 
   return (
@@ -27,6 +27,12 @@ export default function SignIn() {
       <img src={logo} alt="Vizir" />
 
       <Form schema={schema} onSubmit={handleSubmit}>
+        <TextInput
+          name="name"
+          type="text"
+          label="NOME COMPLETO"
+          placeholder="John Due"
+        />
         <TextInput
           name="email"
           type="email"
@@ -43,11 +49,11 @@ export default function SignIn() {
         <SubmitButton
           type="submit"
           color="#EE4D64"
-          text={loading ? '' : 'Entrar no sistema'}
+          text={loading ? '' : 'Criar conta'}
           icon={loading && <AiOutlineLoading3Quarters size={20} color="#FFF" />}
           loading={loading}
         />
-        <Link to="/register">Criar conta gratuita</Link>
+        <Link to="/">Já tenho conta</Link>
       </Form>
     </>
   );

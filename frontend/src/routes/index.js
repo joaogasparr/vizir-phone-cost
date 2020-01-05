@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 
 import SignIn from '~/pages/SignIn';
-// import SignOut from '~/pages/SignOut';
+import SignUp from '~/pages/SignUp';
 
 import Transparency from '~/pages/Transparency';
 import PlanList from '~/pages/Plan/List';
@@ -17,7 +17,7 @@ export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={SignIn} />
-      {/* <Route path="/register" component={SignOut} /> */}
+      <Route path="/register" component={SignUp} />
 
       <Route path="/transparency" component={Transparency} isPrivate />
       <Route path="/plan" exact component={PlanList} isPrivate />

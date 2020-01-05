@@ -11,13 +11,6 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
   max-width: 360px;
   width: 100%;
-  height: 448px;
-
-  background: #fff;
-  border: 1px solid #979797;
-  border-radius: 4px;
-  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
-  padding: 50px 30px;
 
   text-align: center;
 
@@ -26,9 +19,35 @@ export const Content = styled.div`
     flex-direction: column;
     margin-top: 30px;
 
+    label {
+      color: #fff;
+    }
+
+    input {
+      background: rgba(0, 0, 0, 0.1);
+      border: 0;
+      color: #fff;
+      margin: 0 0 10px;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+
     button {
       font-size: 16px;
       line-height: 19px;
+    }
+
+    a {
+      color: #fff;
+      margin-top: 15px;
+      font-size: 16px;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 `;
