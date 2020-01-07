@@ -1,6 +1,6 @@
-import * as Auth from '../../../store/modules/auth/actions';
-import * as User from '../../../store/modules/user/actions';
-import reducer, { INITIAL_STATE } from '../../../store/modules/user/reducer';
+import * as Auth from '~/store/modules/auth/actions';
+import * as User from '~/store/modules/user/actions';
+import reducer, { INITIAL_STATE } from '~/store/modules/user/reducer';
 
 describe('User Reducer', () => {
   beforeEach(() => {
