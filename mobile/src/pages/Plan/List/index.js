@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
-import ShimmerPlaceHolder from 'react-native-shimmer-placeholder';
 import { withNavigationFocus } from 'react-navigation';
 
 import PropTypes from 'prop-types';
